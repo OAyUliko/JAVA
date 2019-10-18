@@ -1,11 +1,9 @@
 package ChinaWeather;
 
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Scanner;
 
 
 /*①找到要调用的API接口
@@ -14,7 +12,10 @@ import java.net.URLConnection;
 */
 public class Weather {
     public static void main(String[] args) throws Exception {
-        //接口路径
+        System.out.println("请选择查询城市的对应代码：101200101--武汉  101200201--襄阳  101200601--黄石" +
+                    "101200801--荆州  101200901--宜昌  101201001--恩施");
+        Scanner sc=new Scanner(System.in);
+        int num=sc.nextInt();//还不知道怎么把多个城市对应点写进来....
 
         String UrlStr="http://t.weather.sojson.com/api/weather/city/101200801";//调用的API位：https://www.tianqiapi.com/?action=v1
         URL Url=new URL(UrlStr);
@@ -38,40 +39,7 @@ public class Weather {
         bw.write(ss);
         bw.close();//记得关闭
 
-        JSONObject  dataJson=new JSONObject();
-        JSONObject  response=dataJson.getJSONObject("response");
-        JSONArray data=response.getJSONArray("data");
-        JSONObject info=data.getJSONObject(0);
-        String province=info.getString("province");
-        String city=info.getString("city");
-        String district=info.getString("district");
-        String address=info.getString("address");
-        System.out.println(province+city+district+address);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //JSONObject json =JSONObject.fromObject(sb);//tostring()将unicode转为汉字
-        //查看json格式
-        //System.out.println(sb.toString());
-        //System.out.println(json.toString());
-        //获取json中某个对象
-        /*JSONObject obj = (JSONObject) json.get("weatherinfo");
-        System.out.println(obj.toString());
-        //获取对象中某个属性的值
-        String val = obj.getString("city");
-        System.out.println(val);*/
+        jsontoxml.jsonToXML(ss);//json转xml
     }
-
+}
 }
