@@ -17,14 +17,6 @@ public class DBTest {
         Statement statement=connection.createStatement();//获取Statement对象
         statement.execute(sql1);
         statement.execute(sql2);
-        //读取数据
-        String sql3="select * from student2 where sno=1";
-        ResultSet resultSet=statement.executeQuery(sql3);
-        while(resultSet.next())
-        {
-            System.out.println("学号："+resultSet.getInt("sno"));
-            System.out.println("姓名："+resultSet.getString(2));
-        }
+        System.out.println("处理完毕！");
         statement.close();
-    }
 }
